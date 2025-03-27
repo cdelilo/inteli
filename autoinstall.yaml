@@ -2,10 +2,10 @@
 autoinstall:
     version: 1
     identity:
-        realname: ''
+        realname: ""
         hostname: ubuntu
-        username: ''
-        password: ''
+        username: ""
+        password: ""
     locale: pt_BR.utf8
     keyboard:
         layout: br
