@@ -15,7 +15,6 @@ autoinstall:
         - wget
         - curl
     early-commands:
-    # Instalando o Docker Desktop
     	- apt update
         - apt install -y ca-certificates curl
         - install -m 0755 -d /etc/apt/keyrings
@@ -24,30 +23,23 @@ autoinstall:
         - echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo \"${UBUNTU_CODENAME:-$VERSION_CODENAME}\") stable" > /etc/apt/sources.list.d/docker.list
         - apt update
     late-commands:
-    # Instalando o Docker Desktop
         - curtin in-target -- bash -c "wget -O /tmp/docker-desktop.deb https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb"
         - curtin in-target -- bash -c "apt install -y /tmp/docker-desktop.deb && rm -rf /tmp/docker-desktop.deb"
         - curtin in-target -- bash -c "systemctl enable --now docker"
         - curtin in-target -- bash -c "usermod -aG docker $(whoami)"
 
-    # Instalando o Google Chrome
         - curtin in-target -- bash -c "wget -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
         - curtin in-target -- bash -c "apt install -y /tmp/chrome.deb && rm -rf /tmp/chrome.deb"
 
-    # Instalando o Volta
         - curtin in-target -- bash -c "curl https://get.volta.sh | bash"
         - curtin in-target -- bash -c "volta install node@18"
 
-    # Instalando o MySQL Workbench
         - curtin in-target -- bash -c "snap install mysql-workbench-community"
 
-    # Instalando o Beekeeper Studio
         - curtin in-target -- bash -c "snap install beekeeper-studio"
 
-    # Instalando o Slack
         - curtin in-target -- bash -c "snap install slack"
 
-    # Instalando o Visual Studio Code
         - curtin in-target -- bash -c "snap install code --classic"
     codecs:
         install: true
