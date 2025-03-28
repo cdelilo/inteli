@@ -24,7 +24,8 @@ autoinstall:
         - curtin in-target -- wget -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         - curtin in-target -- apt install -y /tmp/chrome.deb && rm -rf /tmp/chrome.deb
 
-        - curtin in-target -- wget -qO- https://get.volta.sh | bash
+        - curtin in-target -- apt update && apt install -y curl
+        - curtin in-target -- curl https://get.volta.sh | bash
         - curtin in-target -- volta install node@18
     codecs:
         install: true
