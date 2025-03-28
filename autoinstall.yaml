@@ -2,10 +2,10 @@
 autoinstall:
     version: 1
     identity:
-        realname: ""
+        realname: "Inteli"
         hostname: ubuntu
-        username: ""
-        password: ""
+        username: "inteli"
+        password: "$6$FhcddHFVZ7ABA4Gi$YmScvYxkPo4GN2v2EFACJWFW5zzFgBk908HoqtqT0K0Nv/RLYxvSEdIkMslG9ES.TimNtd1VhEHYv5P8oxzGe/"
     locale: pt_BR.utf8
     keyboard:
         layout: br
