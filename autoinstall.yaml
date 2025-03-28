@@ -2,10 +2,10 @@
 autoinstall:
     version: 1
     identity:
-        realname: "Inteli"
+        realname: 'Inteli'
         hostname: ubuntu
-        username: "inteli"
-        password: "$6$FhcddHFVZ7ABA4Gi$YmScvYxkPo4GN2v2EFACJWFW5zzFgBk908HoqtqT0K0Nv/RLYxvSEdIkMslG9ES.TimNtd1VhEHYv5P8oxzGe/"
+        username: inteli
+        password: '$6$FhcddHFVZ7ABA4Gi$YmScvYxkPo4GN2v2EFACJWFW5zzFgBk908HoqtqT0K0Nv/RLYxvSEdIkMslG9ES.TimNtd1VhEHYv5P8oxzGe/'
     locale: pt_BR.utf8
     keyboard:
         layout: br
@@ -13,34 +13,34 @@ autoinstall:
     packages:
         - git
         - wget
-        - curl
-    early-commands:
-        - apt update
-        - apt install -y ca-certificates curl
-        - install -m 0755 -d /etc/apt/keyrings
-        - curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-        - chmod a+r /etc/apt/keyrings/docker.asc
-        - echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo \"${UBUNTU_CODENAME:-$VERSION_CODENAME}\") stable" > /etc/apt/sources.list.d/docker.list
-        - apt update
+        - curl     
     late-commands:
-        - curtin in-target -- bash -c "wget -O /tmp/docker-desktop.deb https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb"
-        - curtin in-target -- bash -c "apt install -y /tmp/docker-desktop.deb && rm -rf /tmp/docker-desktop.deb"
-        - curtin in-target -- bash -c "systemctl enable --now docker"
-        - curtin in-target -- bash -c "usermod -aG docker $(whoami)"
+        - curtin in-target -- apt update
+        - curtin in-target -- apt install -y ca-certificates curl
+        - curtin in-target -- install -m 0755 -d /etc/apt/keyrings
+        - curtin in-target -- curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+        - curtin in-target -- chmod a+r /etc/apt/keyrings/docker.asc
+        - curtin in-target -- echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo \"${UBUNTU_CODENAME:-$VERSION_CODENAME}\") stable" > /etc/apt/sources.list.d/docker.list
+        - curtin in-target -- apt update
 
-        - curtin in-target -- bash -c "wget -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-        - curtin in-target -- bash -c "apt install -y /tmp/chrome.deb && rm -rf /tmp/chrome.deb"
+        - curtin in-target -- wget -O /tmp/docker-desktop.deb https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb
+        - curtin in-target -- apt install -y /tmp/docker-desktop.deb && rm -rf /tmp/docker-desktop.deb
+        - curtin in-target -- systemctl enable --now docker
+        - curtin in-target -- usermod -aG docker $(whoami)
 
-        - curtin in-target -- bash -c "curl https://get.volta.sh | bash"
-        - curtin in-target -- bash -c "volta install node@18"
+        - curtin in-target -- wget -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        - curtin in-target -- apt install -y /tmp/chrome.deb && rm -rf /tmp/chrome.deb
 
-        - curtin in-target -- bash -c "snap install mysql-workbench-community"
+        - curtin in-target -- curl https://get.volta.sh | bash
+        - curtin in-target -- volta install node@18
 
-        - curtin in-target -- bash -c "snap install beekeeper-studio"
+        - curtin in-target -- snap install mysql-workbench-community
 
-        - curtin in-target -- bash -c "snap install slack"
+        - curtin in-target -- snap install beekeeper-studio
 
-        - curtin in-target -- bash -c "snap install code --classic"
+        - curtin in-target -- snap install slack
+
+        - curtin in-target -- snap install code --classic
     codecs:
         install: true
     drivers:
