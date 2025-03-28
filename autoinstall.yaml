@@ -26,7 +26,7 @@ autoinstall:
 
         - curtin in-target -- apt update && apt install -y curl
         - curtin in-target -- su - inteli -c "curl https://get.volta.sh | bash"
-        - curtin in-target -- su - inteli -c ". ~/.profile && volta install node@18"
+        - curtin in-target -- su - inteli -c "source /home/inteli/.profile && volta install node@18"
     codecs:
         install: true
     drivers:
