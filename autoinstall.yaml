@@ -9,25 +9,23 @@ autoinstall:
     locale: pt_BR.utf8
     keyboard:
         layout: br
-    timezone: "America/Sao_Paulo"   
+    timezone: "America/Sao_Paulo"
     packages:
         - git
         - wget
-        - curl     
+        - curl
+    snaps:
+        - name: mysql-workbench-community
+        - name: beekeeper-studio
+        - name: slack
+        - name: code
+          classic: true
     late-commands:
         - curtin in-target -- wget -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         - curtin in-target -- apt install -y /tmp/chrome.deb && rm -rf /tmp/chrome.deb
 
         - curtin in-target -- wget -qO- https://get.volta.sh | bash
         - curtin in-target -- volta install node@18
-
-        - curtin in-target -- snap install mysql-workbench-community
-
-        - curtin in-target -- snap install beekeeper-studio
-
-        - curtin in-target -- snap install slack
-
-        - curtin in-target -- snap install code --classic
     codecs:
         install: true
     drivers:
